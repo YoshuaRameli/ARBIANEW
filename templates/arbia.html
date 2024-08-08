@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Completa de ARBIA</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* From Uiverse.io by ZacharyCrespin */
+        .back-button {
+            cursor: pointer;
+            font-weight: 700;
+            font-family: Helvetica, "sans-serif";
+            transition: all 0.2s;
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: white;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none; /* Eliminar subrayado */
+            color: black; /* Asegurar que el texto sea negro */
+        }
+
+        .back-button:hover {
+            background: white;
+        }
+
+        .back-button > svg {
+            width: 34px;
+            margin-right: 10px; /* Alineación del icono a la izquierda */
+            transition: transform 0.3s ease-in-out;
+            transform: scaleX(-1); /* Invertir icono horizontalmente */
+        }
+
+        .back-button:hover svg {
+            transform: scaleX(-1) translateX(-5px); /* Invertir icono y añadir desplazamiento */
+        }
+
+        .back-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Estilos para la respuesta de ChatGPT */
+        #responseContainer {
+            margin-top: 20px;
+            padding: 10px;
+            color: #fff; /* Color del texto en blanco */
+            font-family: 'Source Sans Pro', sans-serif; /* Fuente Source Sans Pro */
+            font-weight: 700; /* Negrita */
+            font-size: 1.2em; /* Aumentar el tamaño de la fuente */
+            background: transparent; /* Fondo transparente */
+            border: none; /* Eliminar bordes */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="static/images/Arbia_LogoThree.png" alt="Logo de ARBIA" id="logo">
+    </header>
+    <!-- Botón "Regresar" como enlace -->
+    <a href="http://127.0.0.1:5000/inicio" class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 74" height="34" width="34">
+            <circle stroke-width="3" stroke="black" r="35.5" cy="37" cx="37"></circle>
+            <path fill="black" d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"></path>
+        </svg>
+        <span>Regresar</span>
+    </a>
+    
+    <div class="loader">
+        <span></span>
+    </div>
+    <!-- Contenedor para mostrar la respuesta de ChatGPT -->
+    <div id="responseContainer">Hola, soy Arbia, tu asistente de salud especializado en diabetes. 😊</div>
+    
+    <div class="footer">
+        <div class="messageBox">
+            <div class="fileUploadWrapper">
+                <label for="file">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
+                        <circle stroke-width="20" stroke="#6c6c6c" fill="none" r="158.5" cy="168.5" cx="168.5"></circle>
+                        <path stroke-linecap="round" stroke-width="25" stroke="#6c6c6c" d="M167.759 79V259"></path>
+                        <path stroke-linecap="round" stroke-width="25" stroke="#6c6c6c" d="M79 167.138H259"></path>
+                    </svg>
+                    <span class="tooltip">Add an image</span>
+                </label>
+                <input type="file" id="file" name="file" />
+            </div>
+            <input required="" placeholder="Message..." type="text" id="messageInput" />
+            <button id="sendButton">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
+                    <path fill="none" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
+                    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="33.67" stroke="#6c6c6c" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <script src="static/js/scripts.js"></script>
+</body>
+</html>
