@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Completa de ARBIA</title>
     <link rel="stylesheet" href="static/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* From Uiverse.io by ZacharyCrespin */
-        .back-button {
+         /* From Uiverse.io by ZacharyCrespin */
+         .back-button {
             cursor: pointer;
             font-weight: 700;
             font-family: Helvetica, "sans-serif";
@@ -45,39 +44,94 @@
         .back-button:active {
             transform: scale(0.95);
         }
+        /* Estilos del botón Regresar y otros elementos */
+/* Contenedor de respuestas con tamaño fijo, transparente y desplazamiento vertical */
+.response-container {
+    width: 600px; /* Tamaño fijo para el ancho del contenedor */
+    height: 300px; /* Tamaño fijo para la altura del contenedor */
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    background-color: transparent; /* Fondo transparente */
+    border-radius: 30px; /* Bordes redondeados */
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0); /* Sombra ligera para destacar el contenedor */
+    position: relative; /* Asegura que el contenedor no afecte a otros elementos */
+    z-index: 1; /* Asegura que el contenedor esté por encima de otros elementos si es necesario */
+    display: flex;
+    flex-direction: column; /* Para que los mensajes se apilen verticalmente */
+}
 
-        /* Estilos para la respuesta de ChatGPT */
-        #responseContainer {
-            margin-top: 20px;
-            padding: 10px;
-            color: #fff; /* Color del texto en blanco */
-            font-family: 'Source Sans Pro', sans-serif; /* Fuente Source Sans Pro */
-            font-weight: 700; /* Negrita */
-            font-size: 1.2em; /* Aumentar el tamaño de la fuente */
-            background: transparent; /* Fondo transparente */
-            border: none; /* Eliminar bordes */
-        }
+/* Contenedor de los mensajes */
+.messages {
+    flex: 1; /* Permite que este contenedor tome todo el espacio disponible en la dirección principal */
+    overflow-y: auto; /* Permite el desplazamiento vertical de los mensajes */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
+
+/* Mensajes dentro del contenedor */
+.message {
+    max-width: 100%; /* Asegura que el mensaje use todo el ancho disponible sin exceder el contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
+    margin-bottom: 20px; /* Espacio entre mensajes */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad para los mensajes */
+    color: white; /* Texto blanco */
+    word-wrap: break-word; /* Asegura que el texto se ajuste dentro del mensaje */
+    white-space: pre-wrap; /* Asegura que el texto se envuelva y respete los saltos de línea */
+    overflow-wrap: break-word; /* Asegura el ajuste de palabras largas */
+    border-radius: 30px; /* Radio de esquina de 10px */
+}
+
+/* Mensajes del usuario */
+.message.user {
+    background-color: rgb(0, 84, 168); /* Color de fondo para los mensajes del usuario */
+    border: 1px solid #ffffff; /* Borde blanco */
+    border-radius: 30px; /* Radio de esquina de 10px */
+    align-self: flex-end;
+    text-align: right;
+}
+
+/* Respuestas de ChatGPT con borde blanco y radio de esquina ajustado */
+.message.chatgpt {
+    background-color: #003c7726; /* Color de fondo para las respuestas de ChatGPT */
+    border: 1px solid #ffffff; /* Borde blanco */
+    border-radius: 30px; /* Radio de esquina de 10px */
+    align-self: flex-start;
+}
+
+
+        /* Otros estilos como los del loader y el botón de enviar */
     </style>
+     <!-- Botón "Regresar" como enlace -->
+
+ <header>
+    <img src="static/images/Arbia_LogoThree.png" alt="Logo de ARBIA" id="logo">
+</header>
+<a href="http://127.0.0.1:5000/inicio" class="back-button">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 74" height="34" width="34">
+        <circle stroke-width="3" stroke="black" r="35.5" cy="37" cx="37"></circle>
+        <path fill="black" d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"></path>
+    </svg>
+    <span>Regresar</span>
+</a>
+
+<div class="loader">
+    <span></span>
+</div>
+
 </head>
 <body>
-    <header>
-        <img src="static/images/Arbia_LogoThree.png" alt="Logo de ARBIA" id="logo">
-    </header>
-    <!-- Botón "Regresar" como enlace -->
-    <a href="http://127.0.0.1:5000/inicio" class="back-button">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 74" height="34" width="34">
-            <circle stroke-width="3" stroke="black" r="35.5" cy="37" cx="37"></circle>
-            <path fill="black" d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"></path>
-        </svg>
-        <span>Regresar</span>
-    </a>
-    
-    <div class="loader">
-        <span></span>
+   
+
+
+    <div class="response-container" id="responseContainer">
+        <!-- Mensajes del usuario y respuestas de ChatGPT se insertarán aquí -->
+        <div class="message chatgpt">Hola, soy Arbia, tu asistente de salud especializado en diabetes. 😊</div>
+        <!-- Más mensajes... -->
     </div>
-    <!-- Contenedor para mostrar la respuesta de ChatGPT -->
-    <div id="responseContainer">Hola, soy Arbia, tu asistente de salud especializado en diabetes. 😊</div>
     
+
     <div class="footer">
         <div class="messageBox">
             <div class="fileUploadWrapper">
@@ -100,7 +154,7 @@
             </button>
         </div>
     </div>
-    
+
     <script src="static/js/scripts.js"></script>
 </body>
 </html>

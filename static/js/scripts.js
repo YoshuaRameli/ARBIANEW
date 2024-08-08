@@ -13,6 +13,7 @@ document.getElementById("sendButton").addEventListener("click", function() {
     const message = messageInput.value.trim();
     
     if (message) {
+        addMessageToChat(message, 'user'); // Agregar el mensaje del usuario al chat
         sendToChatGPT(message);
         messageInput.value = ''; // Limpiar la caja de texto después de enviar
     }
@@ -24,7 +25,7 @@ async function sendToChatGPT(message) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `` // Tu clave de API
+                'Authorization': `Bearer ` // Tu clave de API
             },
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
@@ -46,14 +47,23 @@ async function sendToChatGPT(message) {
         console.log('Respuesta de ChatGPT: ', reply);
         
         // Muestra la respuesta en el contenedor de la página
-        const responseContainer = document.getElementById('responseContainer');
-        responseContainer.textContent = reply;
-        
+        addMessageToChat(reply, 'chatgpt');
         speakText(reply); // Convierte la respuesta de texto a voz
     } catch (error) {
         console.error('Error al comunicarse con ChatGPT:', error);
         alert('Hubo un error al obtener la respuesta. Inténtalo de nuevo más tarde.');
     }
+}
+
+function addMessageToChat(message, type) {
+    const responseContainer = document.getElementById('responseContainer');
+    const messageElement = document.createElement('div');
+    messageElement.className = `message ${type}`;
+    messageElement.textContent = message;
+    responseContainer.appendChild(messageElement);
+
+    // Desplaza el contenedor hacia abajo para mostrar el último mensaje
+    responseContainer.scrollTop = responseContainer.scrollHeight;
 }
 
 function speakText(text) {
